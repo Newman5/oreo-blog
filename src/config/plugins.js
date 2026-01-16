@@ -28,8 +28,8 @@ export default {
   },
 
   /**
-   * ZeroPoint Reusable Components plugin
-   * https://github.com/MWDelaney/eleventy-plugin-reusable-components
+   * oreo-blog Reusable Components plugin
+   * https://github.com/Newman/eleventy-plugin-reusable-components
    */
   // async reusableComponents (eleventyConfig) {
   //   // Add plugin to eleventyConfig

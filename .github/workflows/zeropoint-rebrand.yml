@@ -1,10 +1,10 @@
-name: 🧹 Remove ZeroPoint branding
+name: 🧹 Remove oreo-blog branding
 on: workflow_dispatch
 
 jobs:
   rebrand:
     runs-on: ubuntu-latest
-    if: github.repository != 'MWDelaney/ZeroPoint'
+    if: github.repository != 'Newman/oreo-blog'
     steps:
 
       - name: 📥 Checkout the repository
@@ -16,13 +16,13 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: 🏷️ Run rebranding script
-        run: node .github/scripts/zeropoint-rebrand.js
+        run: node .github/scripts/oreo-blog-rebrand.js
         env:
           CI: 'true' # This tells the script to run in automated mode
 
       - name: 🚀 Commit changes and delete this workflow
         uses: EndBug/add-and-commit@v9
         with:
-          remove: '["./.github/workflows/zeropoint-rebrand.yml"]'
+          remove: '["./.github/workflows/oreo-blog-rebrand.yml"]'
           message: "Up to zero 🪐"
           tag: 'v0.0.1 --force'
