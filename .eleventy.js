@@ -93,6 +93,7 @@ export default async function(eleventyConfig) {
     templateFormats: ['njk', 'md', '11ty.js'],
     markdownTemplateEngine: 'njk',
     dataTemplateEngine: 'njk',
-    htmlTemplateEngine: 'njk'
+    htmlTemplateEngine: 'njk',
+    pathPrefix: process.env.PATH_PREFIX || '/mac-cheese-blog/',
   };
 }
