@@ -90,6 +90,9 @@ export default async function(eleventyConfig) {
       layouts: 'assets/views/layouts',
       data: 'data'
     },
-    templateFormats: ['njk', 'md', '11ty.js']
+    templateFormats: ['njk', 'md', '11ty.js'],
+    markdownTemplateEngine: 'njk',
+    dataTemplateEngine: 'njk',
+    htmlTemplateEngine: 'njk'
   };
 }

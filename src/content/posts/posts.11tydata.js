@@ -14,11 +14,16 @@
  * 3. Auto-generate from title using slugify filter: /blog/{slug}/
  * 4. Posts without title or permalink are not published
  */
+
+import slugify from "slugify";
+
+// Global slug registry to track used slugs during build
+const usedSlugs = new Set();
+
 export default {
   eleventyComputed: {
     // Generate permalink URLs for blog posts
     permalink: (data) => {
-
       // If the post date is in the future, do not publish
       if (data.date && new Date(data.date) > new Date()) {
         return false;
@@ -27,9 +32,18 @@ export default {
       // If the post has an explicit permalink, use it
       if (data.permalink) return data.permalink;
 
-      // If no permalink is provided, generate permalink from title using slugify filter
+
+      // If no permalink is provided, generate permalink from title using slugify
       if (data.title) {
-        const slug = data.eleventy.env.filters.slugify(data.title);
+        let baseSlug = slugify(data.title, { lower: true, strict: true });
+        let slug = baseSlug;
+        let counter = 2;
+        // Ensure uniqueness by appending a number if needed
+        while (usedSlugs.has(slug)) {
+          slug = `${baseSlug}-${counter}`;
+          counter++;
+        }
+        usedSlugs.add(slug);
         return `/blog/${slug}/`;
       }
 
